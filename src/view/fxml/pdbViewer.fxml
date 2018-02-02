@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #2c3e50;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.fxmlview.PDBViewerView">
+    <children>
+        <BorderPane fx:id="viewBorderPane" prefHeight="800.0" prefWidth="1200.0">
+            <center>
+                <VBox fx:id="centerVBox" prefHeight="729.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <ToolBar fx:id="toolbar" disable="true">
+                            <items>
+                                <CheckBox fx:id="showAtomsCB" mnemonicParsing="false" prefHeight="27.0" prefWidth="110.0" text="Show Atoms">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </CheckBox>
+                                <CheckBox fx:id="showBondsCB" mnemonicParsing="false" prefHeight="27.0" prefWidth="112.0" text="Show Bonds" textFill="#110000">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </CheckBox>
+                                <CheckBox fx:id="showRibbonsCB" mnemonicParsing="false" prefHeight="27.0" prefWidth="121.0" text="Show Ribbons">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </CheckBox>
+                                <Button fx:id="increaseAtomsBu" mnemonicParsing="false" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: #2c3e50;" text="Atoms ++" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                                <Button fx:id="decreaseAtomsBu" mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #2c3e50;" text="Atoms --" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                                <Button fx:id="increaseBondsBu" mnemonicParsing="false" prefHeight="27.0" prefWidth="84.0" style="-fx-background-color: #2c3e50;" text="Bonds ++" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                                <Button fx:id="decreaseBondsBu" mnemonicParsing="false" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #2c3e50;" text="Bonds --" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                                <Button fx:id="undoBu" disable="true" mnemonicParsing="false" style="-fx-background-color: #2c3e50;" text="&lt;--" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                                <Button fx:id="redoBu" disable="true" mnemonicParsing="false" style="-fx-background-color: #2c3e50;" text="--&gt;" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                            </items>
+                        </ToolBar>
+                        <StackPane fx:id="proteinGraphStackPane" prefHeight="690.0" prefWidth="1200.0">
+                            <children>
+                                <Pane fx:id="bottomPane" cache="true" cacheHint="QUALITY" depthTest="ENABLE" prefHeight="718.0" prefWidth="1200.0" style="-fx-background-color: #2c3e50;" />
+                                <Pane fx:id="selectionPane" pickOnBounds="false" prefHeight="631.0" prefWidth="1025.0" />
+                            </children>
+                        </StackPane>
+                    </children>
+                </VBox>
+            </center>
+            <top>
+                <VBox fx:id="topVBox" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets />
+                    </BorderPane.margin>
+                    <children>
+                        <MenuBar fx:id="mainMenuBar" prefHeight="29.0" prefWidth="653.0" style="-fx-background-color: #ecf0f1;" VBox.vgrow="NEVER">
+                            <menus>
+                                <Menu fx:id="fileMenu" mnemonicParsing="false" text="File">
+                                    <items>
+                                        <MenuItem fx:id="loadMenuItem" mnemonicParsing="false" text="Load from directory">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="O" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem fx:id="loadFromPDBMenuItem" disable="true" mnemonicParsing="false" text="Load from PDB">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="L" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem fx:id="saveMenuItem" disable="true" mnemonicParsing="false" text="Save as PNG">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="S" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" text="Quit">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="Q" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                    </items>
+                                </Menu>
+                                <Menu fx:id="editMenu" disable="true" mnemonicParsing="false" text="Edit">
+                                    <items>
+                                        <CheckMenuItem fx:id="showAtomsMenuItem" mnemonicParsing="false" text="Show Atoms" />
+                                        <CheckMenuItem fx:id="showBondsMenuItem" mnemonicParsing="false" text="Show Bonds" />
+                                        <CheckMenuItem fx:id="showRibbonsMenuItem" mnemonicParsing="false" text="Show Ribbons" />
+                                        <SeparatorMenuItem mnemonicParsing="false" />
+                                        <MenuItem fx:id="increaseAtomsMenuItem" mnemonicParsing="false" text="Increase Atoms" />
+                                        <MenuItem fx:id="decreaseAtomsMenuItem" mnemonicParsing="false" text="Decrease Atoms" />
+                                        <MenuItem fx:id="increaseBondsMenuItem" mnemonicParsing="false" text="Increase Bonds" />
+                                        <MenuItem fx:id="decreaseBondsMenuItem" mnemonicParsing="false" text="Decrease Bonds" />
+                                        <SeparatorMenuItem mnemonicParsing="false" />
+                                        <MenuItem fx:id="undoMenuItem" disable="true" mnemonicParsing="false" text="Undo" />
+                                        <MenuItem fx:id="redoMenuItem" disable="true" mnemonicParsing="false" text="Redo" />
+                                    </items>
+                                </Menu>
+                                <Menu fx:id="viewMenu" disable="true" mnemonicParsing="false" text="View">
+                                    <items>
+                                        <Menu fx:id="highlightMenu" mnemonicParsing="false" text="Highlighting">
+                                            <items>
+                                                <MenuItem fx:id="highlightAtomsMenuItem" mnemonicParsing="false" text="Atoms" />
+                                                <MenuItem fx:id="highlightAminoacidsMenuItem" mnemonicParsing="false" text="Amino Acids" />
+                                                <MenuItem fx:id="highlightStructureMenuItem" mnemonicParsing="false" text="Structures" />
+                                    <MenuItem fx:id="highlightChainsMenuItem" mnemonicParsing="false" text="Chains" />
+                                            </items>
+                                        </Menu>
+                                        <Menu fx:id="modelMenu" mnemonicParsing="false" text="Models">
+                                            <items>
+                                                <MenuItem fx:id="mainChainAtomsModelMenuItem" mnemonicParsing="false" text="Main Chain" />
+                                                <MenuItem fx:id="backboneModelMenuItem" mnemonicParsing="false" text="Backbone" />
+                                                <MenuItem fx:id="spacingFillingModelMenuItem" mnemonicParsing="false" text="Spacing Filling" />
+                                                <MenuItem fx:id="ribbonModelMenuItem" mnemonicParsing="false" text="Ribbon" />
+                                    <MenuItem fx:id="structureModelMenuItem" mnemonicParsing="false" text="Structure" />
+                                            </items>
+                                        </Menu>
+                                    </items>
+                                </Menu>
+                                <Menu fx:id="chartMenu" disable="true" mnemonicParsing="false" text="Charts">
+                                    <items>
+                                        <MenuItem fx:id="aaChartMenuItem" mnemonicParsing="false" text="Aminoacids" />
+                                    </items>
+                                </Menu>
+                            </menus>
+                        </MenuBar>
+                    </children>
+                </VBox>
+            </top>
+            <bottom>
+                <VBox fx:id="structuresVBox" prefHeight="116.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label fx:id="titleLabel" prefHeight="0.0" prefWidth="1200.0" style="-fx-background-color: #2c3e50 #2c3e50;" text="Protein " textFill="WHITE" visible="false">
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <font>
+                                <Font name="Monospaced Italic" size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <padding>
+                                <Insets bottom="5.0" left="10.0" right="20.0" top="5.0" />
+                            </padding>
+                        </Label>
+                        <ScrollPane fx:id="scrollpane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" prefHeight="170.0" vbarPolicy="NEVER" visible="false">
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </padding>
+                        </ScrollPane>
+                        <HBox fx:id="statusHBox" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
+                            <children>
+                                <Button fx:id="retryButton" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" opacity="0.6" prefHeight="27.0" prefWidth="54.0" style="-fx-background-color: #2c3e50;" text="Retry" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                    <effect>
+                                        <Blend mode="GREEN" />
+                                    </effect>
+                                    <HBox.margin>
+                                        <Insets bottom="2.0" left="10.0" right="2.0" top="2.0" />
+                                    </HBox.margin>
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                                </Button>
+                                <Label fx:id="statusLabel" prefHeight="34.0" prefWidth="296.0" style="-fx-background-color: WHITE;" text=" No connection to PDB Database" textFill="#8a3000" />
+                                <ProgressIndicator fx:id="progressIndicator" prefHeight="27.0" prefWidth="67.0" />
+                        <Label fx:id="idLa" depthTest="DISABLE" prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: WHITE;">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="aaLa" depthTest="DISABLE" prefHeight="27.0" prefWidth="180.0" style="-fx-background-color: WHITE;">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="atomsLa" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: WHITE;">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="bondsLa" prefHeight="27.0" prefWidth="158.0" style="-fx-background-color: WHITE;">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </bottom>
+        </BorderPane>
+    </children>
+</AnchorPane>

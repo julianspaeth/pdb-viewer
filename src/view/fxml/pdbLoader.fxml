@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="pdbIdPane" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="276.0" prefWidth="192.0"
+            xmlns="http://javafx.com/javafx/8.0.141" fx:controller="view.fxmlview.PDBLoaderView">
+    <children>
+        <VBox prefHeight="500.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <TextField fx:id="filterTF" promptText="Filter ..." style="-fx-background-color: WHITE;"/>
+                <ListView fx:id="pdbIdListView" prefHeight="439.0" prefWidth="215.0"/>
+                <HBox alignment="CENTER" spacing="5.0">
+                    <children>
+                        <Button fx:id="loadBu" alignment="CENTER" mnemonicParsing="false"
+                                nodeOrientation="LEFT_TO_RIGHT" prefHeight="29.0" prefWidth="94.0"
+                                style="-fx-background-color: #3D9970;" text="Load" textOverrun="CENTER_WORD_ELLIPSIS">
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                        </Button>
+                        <Button fx:id="cancelBu" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #FF4136;" text="Cancel"
+                                textAlignment="CENTER">
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
